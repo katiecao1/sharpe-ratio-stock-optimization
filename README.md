@@ -22,13 +22,16 @@ In the visualization class, I graphed the statistics based on our sharpe ratio c
 Eventually, the user just needs to input the sharpe ratio criteria and update the risk free rate, and the class functions can be called to calculate and visualize the results. 
  
 Yearly return for highest Sharpe Ratio stocks:
+
 ![Yearly return for highest Sharpe Ratio stocks](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/1.png)
 
 In addition to using the highest Sharpe ratio as a filter, I also created filters for the highest mean return and the lowest standard deviations. These were calculated using the pandas built-in mean() and std() functions. I used our visualization class that I created earlier to show plots for daily return, stock price, cumulative return, and yearly return:
 Yearly return for highest mean returns:
+
 ![Yearly return for highest mean returns](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/2.png) 
 
 Yearly return for lowest standard deviation of returns:
+
 ![Yearly return for lowest standard deviation of returns](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/3.png) 
 
 ## Step 4: Portfolio Construction  
