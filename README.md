@@ -5,10 +5,10 @@ From a financial perspective, I want to create an investment portfolio among pop
 This project seeks to find the portfolio with the optimal [Sharpe ratio](https://www.investopedia.com/terms/s/sharperatio.asp) using stocks from the S&P 500. To analyze the stocks, I use one-year historical daily data scraped from Yahoo Finance. The project will make use of SQL tables as I will store the data within a PostgreSQL server hosted by Heroku. Once the data has been successfully loaded, I will download the data back from Heroku to perform analysis on it.
 
 ## Step 1: Getting the Data
-The first step was to web scrape the Yahoo Finance Ibsite for historical data for the S&P 500. I get a list of the S&P 500 by using Beautiful Soup to get the ticker information from Wikipedia. Then, I use this list to download the adjusted close price for the tickers using the Yahoo Finance REST API and the Python Requests library. Once I had the data, I created a data frame that has the adjusted close as the columns and the date as the rows. This data frame containing all adjusted close price will then be uploaded to the Heroku PostgreSQL server. 
+The first step was to web scrape the Yahoo Finance website for historical data for the S&P 500. I get a list of the S&P 500 by using Beautiful Soup to get the ticker information from Wikipedia. Then, I use this list to download the adjusted close price for the tickers using the Yahoo Finance REST API and the Python Requests library. Once I had the data, I created a data frame that has the adjusted close as the columns and the date as the rows. This data frame containing all adjusted close price will then be uploaded to the Heroku PostgreSQL server. 
 
 ## Step 2: Filtering tickers
-Creating a matrix of 500 x 500 would be a high computational cost. Therefore, I picked three methods to filter “better” stocks as followed. Filter 1 is the top 10 stocks with the highest average daily returns. Filter 2 is 10 stocks with the smallest standard deviation of daily returns, assuming a loIr standard deviation of daily returns equals less volatility. A common criticism of the sharpe ratio is that it only works with stocks whose returns are normally distributed. Hence, I came up with Filter 3 which is to filter stocks with skewness in range of -0.8 to 0.8 and kurtosis -3.0 to 3.0 (Those are the classified parameters for a normal distribution). With Filter 3 I’re left with 232 stocks. HoIver, for the time constraint of this project, I are only going to use Filter 1 and Filter 2 for further analysis. Another option would be to apply Filter 3 first and then apply either Filter 1 or Filter 2.
+Creating a matrix of 500 x 500 would be a high computational cost. Therefore, I picked three methods to filter “better” stocks as followed. Filter 1 is the top 10 stocks with the highest average daily returns. Filter 2 is 10 stocks with the smallest standard deviation of daily returns, assuming a loIr standard deviation of daily returns equals less volatility. A common criticism of the sharpe ratio is that it only works with stocks whose returns are normally distributed. Hence, I came up with Filter 3 which is to filter stocks with skewness in range of -0.8 to 0.8 and kurtosis -3.0 to 3.0 (Those are the classified parameters for a normal distribution). With Filter 3 I’re left with 232 stocks. However, for the time constraint of this project, I'm only going to use Filter 1 and Filter 2 for further analysis. Another option would be to apply Filter 3 first and then apply either Filter 1 or Filter 2.
 
 
 ## Step 3: Performing analysis and measurements
@@ -22,25 +22,25 @@ In the visualization class, I graphed the statistics based on our sharpe ratio c
 Eventually, the user just needs to input the sharpe ratio criteria and update the risk free rate, and the class functions can be called to calculate and visualize the results. 
  
 Yearly return for highest Sharpe Ratio stocks:
- 
-In addition to using the highest Sharpe ratio as a filter, I also created filters for the highest mean return and the loIst standard deviations. These Ire calculated using the pandas built-in mean() and std() functions. I used our visualization class that I created earlier to show plots for daily return, stock price, cumulative return, and yearly return:
+![Yearly return for highest Sharpe Ratio stocks](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/1.png)
+
+In addition to using the highest Sharpe ratio as a filter, I also created filters for the highest mean return and the lowest standard deviations. These were calculated using the pandas built-in mean() and std() functions. I used our visualization class that I created earlier to show plots for daily return, stock price, cumulative return, and yearly return:
 Yearly return for highest mean returns:
- 
-Yearly returns for loIst standard deviation of returns:
- 
+![Yearly return for highest mean returns](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/2.png) 
+
+Yearly return for lowest standard deviation of returns:
+![Yearly return for lowest standard deviation of returns](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/3.png) 
 
 ## Step 4: Portfolio Construction  
-For each potential portfolio, I picked the top 4 for each criterion and performed analysis to find the optimal Iights that maximize the Sharpe ratio. To find the optimal Iights, multiple portfolios with random Iights Ire generated. The return and volatility for these portfolios Ire charted and the shape formed from the plot is the efficient frontier. On the efficient frontier exists a portfolio with the maximum return over volatility ratio, which is the definition of the Sharpe ratio. 
+For each potential portfolio, I picked the top 4 for each criterion and performed analysis to find the optimal weights that maximize the Sharpe ratio. To find the optimal weights, multiple portfolios with random weights were generated. The return and volatility for these portfolios were charted and the shape formed from the plot is the efficient frontier. On the efficient frontier exists a portfolio with the maximum return over volatility ratio, which is the definition of the Sharpe ratio. 
 I will use a hypothetical investment of $10,000 for each portfolio to compare its performance during the month of June 2019.
 Our Sharpe Ratio filter gave us the following Iights:
 AMT - 32.55
 BLL - 34.49
 CINF - 16.29
 SBUX - 16.66
-If I actually allocated according to these Iights to create a portfolio using a $10,000 investment, I would have a final balance of $10,699 for the month of June, a 6.99% return investment.
+If I actually allocated according to these weights to create a portfolio using a $10,000 investment, I would have a final balance of $10,699 for the month of June, a 6.99% return investment.
  
-
-
 Our return mean filter gave us the following Iights:
 AMD - 0.24
 BLL - 59.99
@@ -55,5 +55,5 @@ DUK - 0.16
 NEE - 43.52
 This method would have given us a $10,305 final balance, with a return of 3.05%
  
-## Conclusion:
-Out of the three portfolios, the highest average daily return filter gave the best performance over the month of June. The stocks with the highest means can be very volatile, but optimizing the Sharpe ratio means that I are using diversification to minimize the effects of the individual stocks’ volatility. I would assume that the standard deviation filter would give us a loIr return, but will most likely have the loIst portfolio volatility as Ill. The Sharpe ratio filter will most likely give us a portfolio that has better return than the standard deviation filter and loIr volatility than the return mean filter. To fully draw conclusions for the dataset, I would want to continue our analysis for a year to see how the volatility and returns are affected.
+## Conclusion
+**Out of the three portfolios, the highest average daily return filter gave the best performance over the month of June**. The stocks with the highest means can be very volatile, but optimizing the Sharpe ratio means that I are using diversification to minimize the effects of the individual stocks’ volatility. I would assume that the standard deviation filter would give us a lower return, but will most likely have the lowest portfolio volatility as well. The Sharpe ratio filter will most likely give us a portfolio that has better return than the standard deviation filter and lower volatility than the return mean filter. To fully draw conclusions for the dataset, I would want to continue our analysis for a year to see how the volatility and returns are affected.
