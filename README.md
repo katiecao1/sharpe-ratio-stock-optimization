@@ -123,16 +123,16 @@ class visualization:
 
 Yearly return for highest Sharpe Ratio stocks:
 
-![Yearly return for highest Sharpe Ratio stocks](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/1.png)
+![Yearly return for highest Sharpe Ratio stocks](https://github.com/katiecao1/sharpe-ratio-stock-optimization/blob/master/images/1.png)
 
 In addition to using the highest Sharpe ratio as a filter, I also created filters for the highest mean return and the lowest standard deviations. These were calculated using the pandas built-in mean() and std() functions. I used our visualization class that I created earlier to show plots for daily return, stock price, cumulative return, and yearly return:
 Yearly return for highest mean returns:
 
-![Yearly return for highest mean returns](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/2.png) 
+![Yearly return for highest mean returns](https://github.com/katiecao1/sharpe-ratio-stock-optimization/blob/master/images/2.png) 
 
 Yearly return for lowest standard deviation of returns:
 
-![Yearly return for lowest standard deviation of returns](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/3.png) 
+![Yearly return for lowest standard deviation of returns](https://github.com/katiecao1/sharpe-ratio-stock-optimization/blob/master/images/3.png) 
 
 ## Step 4: Portfolio Construction  
 For each potential portfolio, I picked the top 4 for each criterion and performed analysis to find the optimal weights that maximize the Sharpe ratio. To find the optimal weights, multiple portfolios with random weights were generated. The return and volatility for these portfolios were charted and the shape formed from the plot is the efficient frontier. On the efficient frontier exists a portfolio with the maximum return over volatility ratio, which is the definition of the Sharpe ratio. 
@@ -145,7 +145,7 @@ CINF - 16.29
 SBUX - 16.66
 If I actually allocated according to these weights to create a portfolio using a $10,000 investment, I would have a final balance of $10,699 for the month of June, a 6.99% return investment.
 
-![Sharpe Ratio Filter](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/4.png)
+![Sharpe Ratio Filter](https://github.com/katiecao1/sharpe-ratio-stock-optimization/blob/master/images/4.png)
 
 Our return mean filter gave us the following weights:
 
@@ -155,7 +155,7 @@ XLNX - 2.96
 SBUX - 36.82
 This method would have a final balance of $11,264 over the month of June, a 12.64% return investment.
 
-![Return Mean Filter](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/5.png)
+![Return Mean Filter](https://github.com/katiecao1/sharpe-ratio-stock-optimization/blob/master/images/5.png)
 
 Our standard deviation filter gave us the following weights:
 
@@ -165,7 +165,7 @@ DUK - 0.16
 NEE - 43.52
 This method would have given us a $10,305 final balance, with a return of 3.05%
 
-![Standard Deviation Filter](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/6.png)
+![Standard Deviation Filter](https://github.com/katiecao1/sharpe-ratio-stock-optimization/blob/master/images/6.png)
 
 ## Conclusion
 **Out of the three portfolios, the highest average daily return filter gave the best performance over the month of June**. The stocks with the highest means can be very volatile, but optimizing the Sharpe ratio means that I are using diversification to minimize the effects of the individual stocks’ volatility. I would assume that the standard deviation filter would give us a lower return, but will most likely have the lowest portfolio volatility as well. The Sharpe ratio filter will most likely give us a portfolio that has better return than the standard deviation filter and lower volatility than the return mean filter. To fully draw conclusions for the dataset, I would want to continue our analysis for a year to see how the volatility and returns are affected.
