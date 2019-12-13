@@ -15,8 +15,10 @@ The top 10 stocks with the highest average daily returns.
 ### Filter 2
 
 The top 10 stocks with the smallest standard deviation of daily returns, assuming a lower standard deviation of daily returns equals less volatility. 
-A common criticism of the sharpe ratio is that it only works with stocks whose returns are normally distributed. Hence, I came up with Filter 3
+
 ### Filter 3
+
+A common criticism of the sharpe ratio is that it only works with stocks whose returns are normally distributed. Hence, I came up with Filter 3.
 
 Filter stocks with skewness in range of -0.8 to 0.8 and kurtosis -3.0 to 3.0 (Those are the classified parameters for a normal distribution). With Filter 3 I’re left with 232 stocks. However, for the time constraint of this project, I'm only going to use Filter 1 and Filter 2 for further analysis. Another option would be to apply Filter 3 first and then apply either Filter 1 or Filter 2.
 
