@@ -69,7 +69,56 @@ class stock_statistics:
 In the visualization class, I graphed the statistics based on our sharpe ratio criteria. The libraries used include matplotlib and seaborn. I first defined a function to filter stocks with sharpe ratio to the level or range that I desire (i.e. over 2 or betIen 1.5 and 3). I then built the function to graph stocks’ daily return, price movement, cumulative return and yearly return over that period of time. 
 
 Eventually, the user just needs to input the sharpe ratio criteria and update the risk free rate, and the class functions can be called to calculate and visualize the results. 
+
+```python
+class visualization:  
+    def __init__(self, df, criteria, risk_free, filtered=True):
+        self.df = df
+        self.criteria = criteria
+        self.risk_free = risk_free
+        self.filtered = filtered
+      
+    def _filtered(self):
+        """return a list of filtered stocks based on criteria"""
+        df_filtered = stock_statistics(self.df, self.risk_free).process()
+        filtered_stock_list = list(df_filtered.index[df_filtered['sharpe_ratio'] > self.criteria])
+        return filtered_stock_list
  
+    def _dailyReturnGraph(self):
+        """need to input daily return dataframe"""
+        plt.rcParams['figure.figsize'] = 8, 4
+        if self.filtered:
+            return stock_statistics(self.df, self.risk_free)._dailyReturn().loc[:, self._filtered()].plot();
+        else:
+            return stock_statistics(self.df, self.risk_free)._dailyReturn().plot();
+        
+    def _stockPriceGraph(self):
+        """need to input stock price dataframe"""
+        plt.rcParams['figure.figsize'] = 8, 4
+        if self.filtered:
+            return self.df.loc[:, self._filtered()].plot();
+        else:
+            return self.df.plot();
+    
+    def _cumReturnGraph(self):
+        """need to input cum_return dataframe"""
+        plt.rcParams['figure.figsize'] = 8, 4
+        if self.filtered:
+            return stock_statistics(self.df, self.risk_free)._cumReturn().loc[:, self._filtered()].plot();
+        else:
+            return stock_statistics(self.df, self.risk_free)._cumReturn().plot();
+    
+    def _yearlyReturn(self):
+        plt.rcParams['figure.figsize'] = 8, 4
+        sns.set(style="whitegrid")
+        df_sharpe = stock_statistics(self.df, self.risk_free).process()
+        if self.filtered:
+            df_sharpe_sns = df_sharpe[df_sharpe['sharpe_ratio'] > self.criteria]
+            return sns.barplot(x=df_sharpe_sns.index, y ='Yearly_return', data=df_sharpe_sns);
+        else:
+            return sns.barplot(x=df_sharpe.index, y ='Yearly_return', data=df_sharpe);
+```    
+
 Yearly return for highest Sharpe Ratio stocks:
 
 ![Yearly return for highest Sharpe Ratio stocks](https://github.com/katiecao1/sharpe-ratio-optimization/blob/master/images/1.png)
