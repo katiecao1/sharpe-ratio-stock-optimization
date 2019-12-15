@@ -6,10 +6,10 @@ This project seeks to find the portfolio with the optimal [Sharpe ratio](https:/
 
 > For code files, there are 5 Jupyter Notebooks arranged in order of steps
 ```shell
-1. SP500_to_postgres.ipynb	Add files via upload	12 hours ago
-2. Postgres_to_csv.ipynb	Add files via upload	2 days ago
-3. Filter.ipynb	Add files via upload	2 days ago
-4. Data Visualization.ipynb	Add files via upload	2 days ago
+1. SP500_to_postgres.ipynb
+2. Postgres_to_csv.ipynb
+3. Filter.ipynb
+4. Data Visualization.ipynb
 5. Portfolio Weights.ipynb
 ```
 
