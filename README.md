@@ -20,10 +20,10 @@ This project seeks to find the portfolio with the optimal [Sharpe ratio](https:/
 - [Portfolio Construction](#portfolio-construction)
 - [Conclusion](#conclusion)
 
-## Step 1: Getting the Data
+## Getting the Data
 The first step was to web scrape the Yahoo Finance website for historical data for the S&P 500. I get a list of the S&P 500 by using python package Beautiful Soup to get the ticker information from Wikipedia. Then, I use this list to download the adjusted close price for the tickers using the Yahoo Finance REST API and the Python Requests library. Once I had the data, I created a data frame that has the adjusted close as the columns and the date as the rows. This data frame containing all adjusted close price will then be uploaded to the Heroku PostgreSQL server. 
 
-## Step 2: Filtering Stocks
+## Filtering Stocks
 Creating a matrix of 500 x 500 would be a high computational cost. Therefore, I picked three methods to shortlist "better" stocks as followed.
 
 ### Method 1
@@ -41,7 +41,7 @@ A common criticism of the sharpe ratio is that it only works with stocks whose r
 Filter stocks with skewness in range of -0.8 to 0.8 and kurtosis -3.0 to 3.0 (Those are the classified parameters for a normal distribution). With Filter 3 I’re left with 232 stocks. However, for the time constraint of this project, I'm only going to use Filter 1 and Filter 2 for further analysis. Another option would be to apply Filter 3 first and then apply either Filter 1 or Filter 2.
 
 
-## Step 3: Performing Analysis and Measurements
+## Performing Analysis and Measurements
 I then pulled all the data from Heroku Postgres server and saved it as a CSV file that I could easily convert into a data frame to perform further analysis. In this step, I constructed a class called stock_statistics to calculate the yearly return and volatility of each stock, the cumulative return of the timeframe provided, and the sharpe ratio for each stock based on the excess return and volatility. I also constructed a class to visualize the results. 
 
 Since our data’s timeframe is exactly one year, I took the time series daily return (which was calculated using pct_change()), and compounded it for the entire year and minus one to get the geometric annualized return. I then calculated the standard deviation and annualized it by multiplying the square root of the length of the data frame (which is 251) to get the annualized volatility. Finally, I calculated the sharpe ratio by using the excess return, which is the yearly return minus the risk free rate (T-bill rate of 0.0212 on 6/22) , and divided by the volatility of each stock.
@@ -153,7 +153,7 @@ Yearly return for lowest standard deviation of returns:
 
 ![Yearly return for lowest standard deviation of returns](https://github.com/katiecao1/sharpe-ratio-stock-optimization/blob/master/images/3.png) 
 
-## Step 4: Portfolio Construction  
+## Portfolio Construction  
 For each potential portfolio, I picked the top 4 for each criteria and performed analysis to find the optimal weights that maximize the Sharpe ratio. To find the optimal weights, multiple portfolios with random weights were generated. The return and volatility for these portfolios were charted and the shape formed from the plot is the efficient frontier. On the efficient frontier exists a portfolio with the maximum return over volatility ratio, which is the definition of the Sharpe ratio. 
 I will use a hypothetical investment of $10,000 for each portfolio to compare its performance during the month of June 2019.
 
