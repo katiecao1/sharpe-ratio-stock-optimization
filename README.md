@@ -4,7 +4,7 @@
 ## Overview
 This project seeks to find the portfolio with the optimal [Sharpe ratio](https://www.investopedia.com/terms/s/sharperatio.asp) using stocks from the S&P 500. To analyze the stocks, I use one-year historical daily data scraped from Yahoo Finance. The project will make use of SQL tables as I will store the data within a PostgreSQL server hosted by Heroku. Once the data has been successfully loaded, I will download the data back from Heroku to perform analysis on it.
 
-> For code files, there are 5 Jupyter Notebooks arranged in order of steps
+For code files, there are 5 Jupyter Notebooks arranged in order of steps:
 ```shell
 1. SP500_to_postgres.ipynb
 2. Postgres_to_csv.ipynb
